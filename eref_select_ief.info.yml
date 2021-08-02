@@ -1,0 +1,7 @@
+name: 'EREF - Select list with IEF'
+core_version_requirement: ^9
+type: module
+description: EREF - Select list with IEF.
+package: DNC - Entity Reference
+dependencies:
+  - drupal:inline_entity_form

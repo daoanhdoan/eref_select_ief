@@ -1,9 +1,12 @@
 {
-  "name": "daoanhdoan/eref_select_ief",
-  "description": "EREF - Select list with IEF - EREF - Select list with IEF.",
-  "type": "drupal-custom-module",
-  "license":"GPL-2.0",
-  "extra": {
-    "installer-name": "eref_select_ief"
-  }
+    "name" : "daoanhdoan/eref_select_ief",
+    "description": "EREF - Select list with IEF - EREF - Select list with IEF.",
+    "type" : "drupal-custom-module",
+    "license": "GPL-2.0",
+    "extra": {
+        "installer-name": "eref_select_ief"
+    },
+    "require": {
+        "drupal/inline_entity_form": "*"
+    }
 }

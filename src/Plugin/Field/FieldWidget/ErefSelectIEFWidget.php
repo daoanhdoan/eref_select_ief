@@ -106,7 +106,7 @@ class ErefSelectIEFWidget extends OptionsSelectWidget implements ContainerFactor
    */
   public static function defaultSettings()
   {
-    $defaults = parent::defaultSettings() + ['allow_edit' => FALSE];
+    $defaults = parent::defaultSettings() + ['allow_edit' => FALSE, 'element_wrapper' => 'container'];
     $defaults += InlineEntityFormComplex::defaultSettings();
 
     return $defaults;
@@ -122,6 +122,16 @@ class ErefSelectIEFWidget extends OptionsSelectWidget implements ContainerFactor
       '#type' => 'checkbox',
       '#title' => $this->t('Allow users to edit existing item'),
       '#default_value' => $this->getSetting('allow_edit'),
+    ];
+    $element['element_wrapper'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Wrapper element'),
+      '#options' => [
+        'details' => t('Details'),
+        'fieldset' => t('Fieldset'),
+        'container' => t('Container')
+      ],
+      '#default_value' => $this->getSetting('element_wrapper'),
     ];
     $element += $this->iefcWidget->settingsForm($form, $form_state);
     return $element;
@@ -194,7 +204,7 @@ class ErefSelectIEFWidget extends OptionsSelectWidget implements ContainerFactor
     $wrapper = 'inline-entity-form-' . $this->getIefId();
 
     $element = [
-      '#type' => $this->getSetting('collapsible') ? 'details' : 'fieldset',
+      '#type' => $this->getSetting('collapsible') ? 'details' : $this->getSetting('element_wrapper'),
       '#tree' => TRUE,
       '#description' => $this->fieldDefinition->getDescription(),
       '#prefix' => '<div id="' . $wrapper . '">',

@@ -1,0 +1,8 @@
+.field--type-entity-reference.field--widget-eref-select-ief div[id^="inline-entity-form-"] > .form-wrapper { display: flex !important; }
+.field--type-entity-reference.field--widget-eref-select-ief div[id^="inline-entity-form-"] > .form-wrapper .form-type-select + .form-submit { margin: 0px 0px 0px 5px; }
+.ief-form-actions {
+
+}
+.ief-form-actions input.form-submit {
+  margin: 27px 0px 0px 5px;
+}

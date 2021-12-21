@@ -218,6 +218,10 @@ class ErefSelectIEFWidget extends OptionsSelectWidget implements ContainerFactor
       ],
     ] + $element;
 
+    if (!empty($element['target_id']) && $this->getSetting('element_wrapper') == 'container') {
+      $element['target_id']['#title'] = $this->fieldDefinition->getLabel();
+    }
+
     $widget_state = $form_state->get(['inline_entity_form', $element['#ief_id']]);
     if (empty($widget_state)) {
       $widget_state = [
@@ -253,6 +257,10 @@ class ErefSelectIEFWidget extends OptionsSelectWidget implements ContainerFactor
 
     // If no form is open, show buttons that open one.
     $open_form = $form_state->get(['inline_entity_form', $element['#ief_id'], 'form']);
+    if ($open_form) {
+      $element['#type'] = 'details';
+      $element['#open'] = !$this->getSetting('collapsed');
+    }
 
     $target_id = NestedArray::getValue($form_state->getUserInput(), $value_path);
 
@@ -349,6 +357,9 @@ class ErefSelectIEFWidget extends OptionsSelectWidget implements ContainerFactor
         $form_state->set(['inline_entity_form', $element['#ief_id'], 'form'], NULL);
       }
     }
+    $element['actions']['#type'] = 'container';
+    $element['actions']['#attributes'] = ['class' => ['ief-form-actions']];
+    $element['#attached']['library'][] = 'eref_select_ief/style';
     return $element;
   }
 
